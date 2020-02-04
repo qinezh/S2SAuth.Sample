@@ -1,14 +1,10 @@
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.IdentityModel.Tokens;
-using System.Threading.Tasks;
 
 namespace S2SAuth.Sample.Service
 {
@@ -35,23 +31,7 @@ namespace S2SAuth.Sample.Service
                             ValidateIssuer = false,
                             ValidAudience = appsettings.ValidAudience
                         };
-                        options.Events = new JwtBearerEvents
-                        {
-                            OnTokenValidated = context =>
-                            {
-                                return Task.CompletedTask;
-                            }
-                        };
                     });
-
-            //services.AddAuthorization(options =>
-            //{
-            //    options.DefaultPolicy = new AuthorizationPolicyBuilder()
-            //                                .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
-            //                                .RequireAuthenticatedUser()
-            //                                .Build();
-            //});
-
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

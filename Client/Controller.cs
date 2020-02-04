@@ -10,13 +10,13 @@ using System.Threading.Tasks;
 namespace S2SAuth.Sample.Service.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
-    public class DemoController : ControllerBase
+    [Route("")]
+    public class Controller : ControllerBase
     {
         private readonly IHttpClientFactory _httpClientFactory;
-        private readonly ILogger<DemoController> _logger;
+        private readonly ILogger<Controller> _logger;
 
-        public DemoController(IHttpClientFactory httpClientFactory, ILogger<DemoController> logger)
+        public Controller(IHttpClientFactory httpClientFactory, ILogger<Controller> logger)
         {
             _httpClientFactory = httpClientFactory;
             _logger = logger;
@@ -25,17 +25,15 @@ namespace S2SAuth.Sample.Service.Controllers
         [HttpGet]
         public async Task<List<object>> Get()
         {
-            var azureServiceTokenProvider = new AzureServiceTokenProvider();
-            var accessToken = await azureServiceTokenProvider.GetAccessTokenAsync("https://mslearn-hierarchy-internal.microsoftonedoc.com");
-
+            var accessToken = await GetAccessToken();
             var client = _httpClientFactory.CreateClient();
 
             var urls = new List<string>
             {
-                "https://localhost:5000/Permission/default",
-                "https://localhost:5000/Permission/Readers",
-                "https://localhost:5000/Permission/Writers",
-                "https://localhost:5000/Permission/Admins"
+                "https://localhost:5000/default",
+                "https://localhost:5000/Readers",
+                "https://localhost:5000/Writers",
+                "https://localhost:5000/Admins"
             };
 
             var result = new List<object>();
@@ -58,5 +56,9 @@ namespace S2SAuth.Sample.Service.Controllers
 
             return result;
         }
+
+        private async Task<string> GetAccessToken()
+            => await new AzureServiceTokenProvider()
+                        .GetAccessTokenAsync("https://mslearn-hierarchy-internal.microsoftonedoc.com");
     }
 }

@@ -6,12 +6,12 @@ using Microsoft.Extensions.Logging;
 namespace S2SAuth.Sample.Service.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
-    public class PermissionController : ControllerBase
+    [Route("")]
+    public class Controller : ControllerBase
     {
-        private readonly ILogger<PermissionController> _logger;
+        private readonly ILogger<Controller> _logger;
 
-        public PermissionController(ILogger<PermissionController> logger)
+        public Controller(ILogger<Controller> logger)
         {
             _logger = logger;
         }
