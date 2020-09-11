@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "S2SAuth.Sample.Service", "Service\S2SAuth.Sample.Service.csproj", "{5EBD5267-F14D-4AF9-ABE2-3FBDAC25D644}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "S2SAuth.Sample.Client", "Client\S2SAuth.Sample.Client.csproj", "{A3F14B3A-1BB1-4165-A137-21BDD3FD7764}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "S2SAuth.Sample.RBACAuthService", "RBACAuthService\S2SAuth.Sample.RBACAuthService.csproj", "{77B6EF0B-5DFC-44BB-B388-8E81017A09F5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "S2SAuth.Sample.SimpleAuthService", "SimpleAuthService\S2SAuth.Sample.SimpleAuthService.csproj", "{232A985C-6DFD-4EB3-AE63-FFED3914A5EB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +15,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5EBD5267-F14D-4AF9-ABE2-3FBDAC25D644}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5EBD5267-F14D-4AF9-ABE2-3FBDAC25D644}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5EBD5267-F14D-4AF9-ABE2-3FBDAC25D644}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5EBD5267-F14D-4AF9-ABE2-3FBDAC25D644}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A3F14B3A-1BB1-4165-A137-21BDD3FD7764}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A3F14B3A-1BB1-4165-A137-21BDD3FD7764}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3F14B3A-1BB1-4165-A137-21BDD3FD7764}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A3F14B3A-1BB1-4165-A137-21BDD3FD7764}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77B6EF0B-5DFC-44BB-B388-8E81017A09F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77B6EF0B-5DFC-44BB-B388-8E81017A09F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77B6EF0B-5DFC-44BB-B388-8E81017A09F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77B6EF0B-5DFC-44BB-B388-8E81017A09F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{232A985C-6DFD-4EB3-AE63-FFED3914A5EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{232A985C-6DFD-4EB3-AE63-FFED3914A5EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{232A985C-6DFD-4EB3-AE63-FFED3914A5EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{232A985C-6DFD-4EB3-AE63-FFED3914A5EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

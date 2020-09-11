@@ -1,0 +1,4 @@
+@token = <jwt-token>
+
+GET https://localhost:44346/auth
+Authorization: bearer {{token}}

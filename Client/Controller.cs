@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Services.AppAuthentication;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -14,26 +13,25 @@ namespace S2SAuth.Sample.Service.Controllers
     public class Controller : ControllerBase
     {
         private readonly IHttpClientFactory _httpClientFactory;
-        private readonly ILogger<Controller> _logger;
 
-        public Controller(IHttpClientFactory httpClientFactory, ILogger<Controller> logger)
+        public Controller(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
-            _logger = logger;
         }
 
         [HttpGet]
-        public async Task<List<object>> Get()
+        [Route("rbac")]
+        public async Task<List<object>> GetRBAC()
         {
-            var accessToken = await GetAccessToken();
+            var accessToken = await GetCustomizedAccessToken();
             var client = _httpClientFactory.CreateClient();
 
             var urls = new List<string>
             {
-                "https://localhost:5000/default",
-                "https://localhost:5000/Readers",
-                "https://localhost:5000/Writers",
-                "https://localhost:5000/Admins"
+                "https://localhost:44307/default",
+                "https://localhost:44307/Readers",
+                "https://localhost:44307/Writers",
+                "https://localhost:44307/Admins"
             };
 
             var result = new List<object>();
@@ -57,8 +55,29 @@ namespace S2SAuth.Sample.Service.Controllers
             return result;
         }
 
-        private async Task<string> GetAccessToken()
+        [HttpGet]
+        [Route("simple")]
+        public async Task GetSimple()
+        {
+            var client = _httpClientFactory.CreateClient();
+            var request = new HttpRequestMessage
+            {
+                Method = HttpMethod.Get,
+                RequestUri = new Uri("https://localhost:44346/auth"),
+            };
+
+            var accessToken = await GetManagedAccessToken();
+            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+
+            await client.SendAsync(request);
+        }
+
+        private async Task<string> GetManagedAccessToken()
             => await new AzureServiceTokenProvider()
-                        .GetAccessTokenAsync("https://mslearn-hierarchy-internal.microsoftonedoc.com");
+                        .GetAccessTokenAsync("https://management.azure.com");
+
+        private async Task<string> GetCustomizedAccessToken()
+            => await new AzureServiceTokenProvider()
+                        .GetAccessTokenAsync("https://mslearn-hierarchy-sandbox.microsoftonedoc.com");
     }
 }
